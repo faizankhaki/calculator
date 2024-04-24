@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculator</title>
+<style>
+   
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: 'Roboto Condensed', sans-serif;
+        background-color: #f0f0f00a;
+    }
+
+    .calculator {
+        width: 300px;
+        padding: 20px;
+        border-radius: 10px;
+        background: linear-gradient(to bottom, #bfbaff46, #77759707);
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    #display {
+        width: calc(100% - 20px);
+        height: 50px;
+        font-size: 24px;
+        text-align: right;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: rgba(18, 4, 58, 0.007);
+        box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.1);
+        outline: none;
+        font-family: mycal;
+    }
+
+    .row {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    @font-face {
+        font-family: mycal ;
+        src: url(digi.ttf);
+    }
+    input[type="button"] {
+        width: 70px;
+        height: 70px;
+        margin: 5px;
+        font-size: 24px;
+        border: none;
+        border-radius: 5px;
+        outline: none;
+        cursor: pointer;
+        background: linear-gradient(to bottom, #ffffff, #e6e6e6);
+        box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+        transition: background 0.3s ease;
+        font-family: mycal;
+        
+    }
+
+    input[type="button"]:hover {
+        background: linear-gradient(to bottom, #e6e6e6, #ffffff);
+    }
+
+    .equals {
+        height: 140px;
+    }
+</style>
+</head>
+<body>
+
+<div class="calculator">
+    <input type="text" id="display" readonly>
+    <div class="row">
+        <input type="button" value="7" onclick="addToDisplay('7')">
+        <input type="button" value="8" onclick="addToDisplay('8')">
+        <input type="button" value="9" onclick="addToDisplay('9')">
+        <input type="button" value="/" onclick="addToDisplay('/')">
+    </div>
+    <div class="row">
+        <input type="button" value="4" onclick="addToDisplay('4')">
+        <input type="button" value="5" onclick="addToDisplay('5')">
+        <input type="button" value="6" onclick="addToDisplay('6')">
+        <input type="button" value="*" onclick="addToDisplay('*')">
+    </div>
+    <div class="row">
+        <input type="button" value="1" onclick="addToDisplay('1')">
+        <input type="button" value="2" onclick="addToDisplay('2')">
+        <input type="button" value="3" onclick="addToDisplay('3')">
+        <input type="button" value="-" onclick="addToDisplay('-')">
+    </div>
+    <div class="row">
+        <input type="button" value="0" onclick="addToDisplay('0')">
+        <input type="button" value="." onclick="addToDisplay('.')">
+        <input type="button" value="=" class="equals" onclick="calculate()">
+        <input type="button" value="+" onclick="addToDisplay('+')">
+    </div>
+    <div class="row">
+        <input type="button" value="C" onclick="clearDisplay()">
+    </div>
+</div>
+
+<script>
+    function addToDisplay(value) {
+      var buttons = document.querySelectorAll('input[type="button"]');
+      buttons.forEach(function(button) {
+          button.style.background = "linear-gradient(to bottom, #ffffff, #e6e6e6)";
+      });
+  
+      
+      event.target.style.background = "#0000FF"; 
+  
+      
+      document.getElementById('display').value += value;
+      
+    
+      setTimeout(() => {
+          event.target.style.background = "linear-gradient(to bottom, #ffffff, #e6e6e6)";
+      }, 300);
+    }
+  
+    function clearDisplay() {
+     
+      var buttons = document.querySelectorAll('input[type="button"]');
+      buttons.forEach(function(button) {
+          button.style.background = "linear-gradient(to bottom, #ffffff, #e6e6e6)";
+      });
+      
+      document.getElementById('display').value = '';
+    }
+  
+    function calculate() {
+      var expression = document.getElementById('display').value;
+      var result = eval(expression);
+      document.getElementById('display').value = result;
+    }
+  </script>
+  
+  
+
+</body>
+</html>
